@@ -1,8 +1,8 @@
 ✈️ FlightService
 
-FlightService, havayolu operasyonlarını yönetmek amacıyla geliştirilmiş, Spring Boot tabanlı bir backend uygulamasıdır.
+FlightService, uçuş operasyonlarının yönetilmesi amacıyla geliştirilmiş Spring Boot tabanlı RESTful Backend API projesidir.
 
-Proje; uçuş, kullanıcı ve havayolu operasyonlarının güvenli bir şekilde yönetilmesini sağlayan RESTful servis mimarisi üzerine kurulmuştur.
+Proje; kullanıcı yönetimi, authentication, yetkilendirme ve uçuş operasyonlarının güvenli ve sürdürülebilir bir mimari üzerinden yönetilmesini hedeflemektedir.
 
 🚀 Özellikler
 
@@ -10,13 +10,13 @@ Proje; uçuş, kullanıcı ve havayolu operasyonlarının güvenli bir şekilde 
 
 👤 Kullanıcı yönetimi
 
-🔐 JWT tabanlı kimlik doğrulama
+🔐 JWT tabanlı authentication
 
-🛡️ Spring Security ile yetkilendirme
+🛡️ Spring Security ile authorization
 
-🗄️ PostgreSQL veritabanı entegrasyonu
+🗄️ PostgreSQL veritabanı
 
-📦 Spring Data JPA ile veri erişimi
+📦 Spring Data JPA
 
 ✉️ E-posta gönderimi
 
@@ -24,70 +24,75 @@ Proje; uçuş, kullanıcı ve havayolu operasyonlarının güvenli bir şekilde 
 
 📊 Spring Boot Actuator
 
-📈 Prometheus metrikleri
+📈 Prometheus metrics
 
-🧩 Katmanlı ve sürdürülebilir backend mimarisi
+🧩 Katmanlı mimari
+
+🔄 RESTful API
 
 🛠️ Teknolojiler
-Teknoloji	Kullanım Amacı
-Java 26	Programlama dili
-Spring Boot 4.1.1	Backend framework
-Spring Web MVC	REST API geliştirme
-Spring Data JPA	ORM ve veri erişimi
-PostgreSQL	İlişkisel veritabanı
-Spring Security	Authentication & Authorization
-JWT	Token tabanlı authentication
+Teknoloji	Kullanım
+Java 26	Backend geliştirme
+Spring Boot	Backend framework
+Spring Web	REST API
+Spring Data JPA	Veritabanı erişimi
+PostgreSQL	Veritabanı
+Spring Security	Güvenlik
+JWT	Authentication
 Spring Validation	Veri doğrulama
 Spring Mail	E-posta işlemleri
-Lombok	Boilerplate kodların azaltılması
-Actuator	Uygulama monitoring
-Micrometer / Prometheus	Metrik toplama
-Gradle	Build ve dependency management
+Lombok	Boilerplate kod azaltma
+Spring Actuator	Monitoring
+Micrometer	Metrics
+Prometheus	Monitoring
+Gradle	Build & dependency management
 🏗️ Mimari
 
-Uygulama, sorumlulukların birbirinden ayrıldığı katmanlı bir mimari yaklaşım kullanacak şekilde tasarlanmıştır.
+Proje katmanlı mimari yaklaşımı kullanmaktadır.
 
-┌──────────────────────────────┐
-│          Client              │
-└──────────────┬───────────────┘
-               │
-               ▼
-┌──────────────────────────────┐
-│       REST Controller        │
-└──────────────┬───────────────┘
-               │
-               ▼
-┌──────────────────────────────┐
-│          Service             │
-│     Business Logic Layer     │
-└──────────────┬───────────────┘
-               │
-               ▼
-┌──────────────────────────────┐
-│        Repository            │
-│       Data Access Layer      │
-└──────────────┬───────────────┘
-               │
-               ▼
-┌──────────────────────────────┐
-│         PostgreSQL           │
-└──────────────────────────────┘
+                    ┌─────────────────┐
+                    │     Client      │
+                    └────────┬────────┘
+                             │
+                             ▼
+                    ┌─────────────────┐
+                    │   Controller    │
+                    │    REST API     │
+                    └────────┬────────┘
+                             │
+                             ▼
+                    ┌─────────────────┐
+                    │     Service     │
+                    │ Business Logic  │
+                    └────────┬────────┘
+                             │
+                             ▼
+                    ┌─────────────────┐
+                    │   Repository    │
+                    │   Data Access   │
+                    └────────┬────────┘
+                             │
+                             ▼
+                    ┌─────────────────┐
+                    │   PostgreSQL    │
+                    └─────────────────┘
 
 
-Authentication ve authorization işlemleri Spring Security ve JWT üzerinden gerçekleştirilmektedir.
+Authentication ve authorization işlemleri Spring Security ve JWT kullanılarak gerçekleştirilmektedir.
 
-📁 Proje Yapısı
-
-Projenin temel yapısı Gradle ve Spring Boot üzerine kuruludur:
-
+📂 Proje Yapısı
 FlightService/
+│
 ├── gradle/
 │   └── wrapper/
+│
 ├── src/
 │   ├── main/
 │   │   ├── java/
 │   │   └── resources/
+│   │
 │   └── test/
+│
 ├── .gitattributes
 ├── .gitignore
 ├── build.gradle
@@ -98,7 +103,7 @@ FlightService/
 
 ⚙️ Gereksinimler
 
-Projeyi çalıştırmadan önce aşağıdaki araçların sisteminizde bulunması gerekir:
+Projeyi çalıştırmak için aşağıdaki araçların sisteminizde bulunması gerekir:
 
 Java 26
 
@@ -106,26 +111,31 @@ PostgreSQL
 
 Git
 
-Gradle'ın ayrıca kurulmasına gerek yoktur. Proje içerisinde bulunan Gradle Wrapper kullanılabilir.
+Gradle'ın ayrıca kurulmasına gerek yoktur. Projede bulunan Gradle Wrapper kullanılabilir.
 
 Java sürümünü kontrol etmek için:
 
 java -version
 
-📥 Projeyi Klonlama
+📥 Kurulum
+
+Repository'yi klonlayın:
+
 git clone https://github.com/ilkerCelimli/FlightService.git
+
+
+Proje klasörüne geçin:
+
 cd FlightService
 
-🗄️ PostgreSQL Yapılandırması
+🗄️ PostgreSQL Ayarları
 
-PostgreSQL üzerinde proje için bir veritabanı oluşturun.
-
-Örneğin:
+PostgreSQL üzerinde proje için bir database oluşturun:
 
 CREATE DATABASE flightservice;
 
 
-Ardından Spring Boot configuration dosyanızdaki veritabanı bağlantı bilgilerini kendi ortamınıza göre düzenleyin.
+Ardından uygulamanın database bağlantı bilgilerini kendi ortamınıza göre yapılandırın.
 
 Örnek:
 
@@ -134,7 +144,19 @@ spring.datasource.username=postgres
 spring.datasource.password=your_password
 
 
-Gerçek veritabanı şifrelerini veya JWT secret gibi hassas bilgileri Git repository'sine göndermeyin.
+Not: Gerçek database şifrelerini, JWT secret değerlerini veya diğer hassas bilgileri Git repository'sine göndermeyin.
+
+🔐 Environment Variables
+
+Production ortamında hassas bilgilerin environment variable olarak tutulması önerilir.
+
+Örnek:
+
+DATABASE_USERNAME
+DATABASE_PASSWORD
+JWT_SECRET
+MAIL_USERNAME
+MAIL_PASSWORD
 
 ▶️ Uygulamayı Çalıştırma
 Linux / macOS
@@ -143,29 +165,51 @@ Linux / macOS
 Windows
 gradlew.bat bootRun
 
+🔨 Build
 
-Alternatif olarak projeyi build edebilirsiniz:
+Projeyi temizleyip build almak için:
 
-./gradlew build
+./gradlew clean build
 
 
-Testleri çalıştırmak için:
+Windows:
+
+gradlew.bat clean build
+
+
+Build tamamlandıktan sonra JAR dosyası:
+
+build/libs/
+
+
+klasörü altında oluşturulur.
+
+JAR dosyasını çalıştırmak için:
+
+java -jar build/libs/FlightService-0.0.1-SNAPSHOT.jar
+
+🧪 Test
+
+Unit testleri çalıştırmak için:
 
 ./gradlew test
 
+
+Windows:
+
+gradlew.bat test
+
 🔐 Authentication
 
-Uygulamada authentication mekanizması Spring Security + JWT kullanılarak gerçekleştirilmektedir.
-
-Kullanıcı başarılı bir şekilde authentication işleminden geçtiğinde JWT token oluşturulur ve korumalı endpoint'lere erişim sırasında bu token kullanılır.
+FlightService, authentication işlemlerinde Spring Security + JWT yaklaşımını kullanmaktadır.
 
 Genel authentication akışı:
 
 Client
    │
-   │ Login credentials
+   │ Login
    ▼
-Authentication Endpoint
+Authentication
    │
    ▼
 Spring Security
@@ -176,74 +220,49 @@ JWT Token
    ▼
 Protected API
 
+
+Kullanıcı başarılı bir şekilde giriş yaptıktan sonra elde edilen JWT token, yetkilendirme gerektiren endpoint'lere yapılan isteklerde kullanılmalıdır.
+
+Örnek:
+
+Authorization: Bearer <JWT_TOKEN>
+
 📡 REST API
 
-Uygulamanın REST API endpoint'leri controller katmanı üzerinden sunulmaktadır.
+Uygulama RESTful API yaklaşımını kullanmaktadır.
 
-Endpoint'lerin güncel listesi ve request/response modelleri proje içerisindeki controller sınıflarından incelenebilir.
+API endpoint'leri Controller katmanı üzerinden sunulmaktadır.
 
-Genel yapı:
+Genel endpoint yapısı:
 
 /api/...
 
 
-Endpoint listesi proje geliştikçe bu bölümde detaylandırılabilir.
+API endpoint'lerinin detayları proje içerisindeki Controller sınıflarından incelenebilir.
 
 📊 Monitoring
 
-Uygulamada Spring Boot Actuator ve Micrometer Prometheus desteği bulunmaktadır.
+Projede Spring Boot Actuator ve Micrometer Prometheus desteği bulunmaktadır.
 
-Bu sayede uygulamanın:
+Bu yapı sayesinde uygulamanın:
 
 Health durumu
-
-Uygulama metrikleri
 
 JVM metrikleri
 
 HTTP request metrikleri
 
-Sistem performans bilgileri
+Sistem metrikleri
+
+Uygulama performansı
 
 izlenebilir.
 
-Prometheus entegrasyonu sayesinde monitoring sistemlerine metrik aktarımı yapılabilir.
-
-🧪 Test
-
-Testleri çalıştırmak için:
-
-./gradlew test
-
-
-Windows:
-
-gradlew.bat test
-
-
-Test sonuçları Gradle'ın oluşturduğu build klasörü içerisinde bulunabilir.
-
-🔨 Build
-
-Production için build almak:
-
-./gradlew clean build
-
-
-Oluşturulan JAR dosyası:
-
-build/libs/
-
-
-klasörü altında bulunur.
-
-JAR dosyasını çalıştırmak için:
-
-java -jar build/libs/FlightService-0.0.1-SNAPSHOT.jar
+Prometheus ile monitoring sistemlerine metrik aktarımı yapılabilir.
 
 🔒 Güvenlik
 
-Projede güvenlik açısından aşağıdaki teknolojiler kullanılmaktadır:
+Projede aşağıdaki güvenlik teknolojileri kullanılmaktadır:
 
 Spring Security
 
@@ -251,76 +270,80 @@ JWT
 
 Password hashing
 
+Authentication
+
+Authorization
+
 Request validation
 
-Authentication / Authorization
+Production ortamında özellikle aşağıdaki bilgilerin güvenli şekilde yönetilmesi önerilir:
 
-Production ortamında aşağıdaki bilgilerin environment variable veya güvenli bir secret management sistemi üzerinden yönetilmesi önerilir:
-
-DATABASE_USERNAME
-DATABASE_PASSWORD
 JWT_SECRET
-MAIL_USERNAME
+DATABASE_PASSWORD
 MAIL_PASSWORD
 
-📈 Gelecek Geliştirmeler
+🧪 Geliştirme
 
-Projeye ilerleyen aşamalarda aşağıdaki özellikler eklenebilir:
-
- Swagger / OpenAPI dokümantasyonu
-
- Docker ve Docker Compose desteği
-
- Daha kapsamlı integration testleri
-
- CI/CD pipeline
-
- Redis cache
-
- Kafka / RabbitMQ entegrasyonu
-
- Gelişmiş role-based authorization
-
- Merkezi logging
-
- Production monitoring dashboard
-
- Test coverage raporu
-
-🤝 Katkıda Bulunma
-
-Projeye katkıda bulunmak için:
-
-Repository'yi fork edin.
-
-Yeni bir branch oluşturun.
+Yeni bir özellik geliştirmek için:
 
 git checkout -b feature/new-feature
 
 
-Değişikliklerinizi yapın.
-
-Commit oluşturun.
+Değişikliklerinizi yaptıktan sonra:
 
 git add .
 git commit -m "Add new feature"
 
 
-Branch'inizi GitHub'a gönderin.
+Branch'i GitHub'a gönderin:
 
 git push origin feature/new-feature
 
 
-Pull Request oluşturun.
+Daha sonra GitHub üzerinden Pull Request oluşturabilirsiniz.
 
-📄 Lisans
+📌 Roadmap
 
-Bu repository için henüz belirlenmiş bir lisans bilgisi bulunmamaktadır.
+Projeye ilerleyen aşamalarda aşağıdaki özelliklerin eklenmesi planlanabilir:
 
-👨‍💻 Geliştirici
+ Swagger / OpenAPI documentation
+
+ Docker
+
+ Docker Compose
+
+ CI/CD
+
+ Integration tests
+
+ Test coverage
+
+ Redis cache
+
+ Kafka / RabbitMQ
+
+ Centralized logging
+
+ Grafana dashboard
+
+ Daha kapsamlı role-based authorization
+
+🤝 Contributing
+
+Katkıda bulunmak isteyen geliştiriciler repository'yi fork ederek yeni bir branch oluşturabilir ve Pull Request gönderebilir.
+
+Katkılar, hata düzeltmeleri ve yeni özellik önerileri memnuniyetle karşılanır.
+
+📄 License
+
+Bu proje için henüz bir lisans belirtilmemiştir.
+
+👨‍💻 Developer
 
 İlker Celimli
 
-GitHub: @ilkerCelimli
+GitHub:
 
-⭐ Projeyi faydalı bulduysanız repository'ye star bırakabilirsiniz.
+https://github.com/ilkerCelimli
+
+⭐ Eğer proje hoşunuza gittiyse repository'ye star vermeyi unutmayın!
