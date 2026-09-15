@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: airline-system
+
+  datasource:
+    username: admin
+    password: 12345
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8080
+
+app:
+  jwt:
+    secret: ChangeThisSecretKeyToSomethingLongAndRandomInProductionEnvironment123456
+    token-validity-in-seconds: 86400000
+
